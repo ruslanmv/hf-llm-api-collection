@@ -7,20 +7,20 @@ sdk: docker
 app_port: 23333
 ---
 
-## HF-LLM-API
+## HF-LLM-API-COLLECTION
 Huggingface LLM Inference API in OpenAI message format.
 
 Project link: https://github.com/ruslanmv/hf-llm-api-collection
 
 ## Features
 
-- Available Models (2024/01/22): [#5](https://github.com/Hansimov/hf-llm-api/issues/5)
+- Available Models (2024/01/22): [#5](https://github.com/ruslanmv/hf-llm-api-collection/issues/5)
   - `mistral-7b`, `mixtral-8x7b`, `nous-mixtral-8x7b`
   - Adaptive prompt templates for different models
 - Support OpenAI API format
   - Enable api endpoint via official `openai-python` package
 - Support both stream and no-stream response
-- Support API Key via both HTTP auth header and env varible [#4](https://github.com/Hansimov/hf-llm-api/issues/4)
+- Support API Key via both HTTP auth header and env varible [#4](https://github.com/ruslanmv/hf-llm-api-collection/issues/4)
 - Docker deployment
 
 ## Run API service
