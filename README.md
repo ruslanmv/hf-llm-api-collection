@@ -10,18 +10,19 @@ app_port: 23333
 ## HF-LLM-API-COLLECTION
 Huggingface LLM Inference API in OpenAI message format.
 
-Project link: https://github.com/ruslanmv/hf-llm-api-collection
-
 ## Features
 
-- Available Models (2024/01/22): [#5](https://github.com/ruslanmv/hf-llm-api-collection/issues/5)
-  - `mistral-7b`, `mixtral-8x7b`, `nous-mixtral-8x7b`
-  - Adaptive prompt templates for different models
+✅ Implemented:
+
+- Support Models
+  - `mixtral-8x7b`, `mistral-7b`
 - Support OpenAI API format
-  - Enable api endpoint via official `openai-python` package
-- Support both stream and no-stream response
-- Support API Key via both HTTP auth header and env varible [#4](https://github.com/ruslanmv/hf-llm-api-collection/issues/4)
+  - Can use api endpoint via official `openai-python` package
+- Stream response
 - Docker deployment
+
+🔨 In progress:
+- [x] Support more models
 
 ## Run API service
 
@@ -62,17 +63,14 @@ sudo docker run -p 23333:23333 --env http_proxy="http://<server>:<port>" hf-llm-
 
 ### Using `openai-python`
 
-See: [`examples/chat_with_openai.py`](https://github.com/ruslanmv/hf-llm-api-collection/blob/main/examples/chat_with_openai.py)
+See: [examples/chat_with_openai.py](https://github.com/ruslanmv/hf-llm-api-collection/blob/main/examples/chat_with_openai.py)
 
 ```py
 from openai import OpenAI
 
 # If runnning this service with proxy, you might need to unset `http(s)_proxy`.
 base_url = "http://127.0.0.1:23333"
-# Your own HF_TOKEN
-api_key = "hf_xxxxxxxxxxxxxxxx"
-# use below as non-auth user
-# api_key = "sk-xxx"
+api_key = "sk-xxxxx"
 
 client = OpenAI(base_url=base_url, api_key=api_key)
 response = client.chat.completions.create(
@@ -97,7 +95,7 @@ for chunk in response:
 
 ### Using post requests
 
-See: [`examples/chat_with_post.py`](https://github.com/ruslanmv/hf-llm-api-collection/blob/main/examples/chat_with_post.py)
+See: [examples/chat_with_post.py](https://github.com/ruslanmv/hf-llm-api-collection/blob/main/examples/chat_with_post.py)
 
 
 ```py
@@ -108,11 +106,7 @@ import re
 
 # If runnning this service with proxy, you might need to unset `http(s)_proxy`.
 chat_api = "http://127.0.0.1:23333"
-# Your own HF_TOKEN
-api_key = "hf_xxxxxxxxxxxxxxxx"
-# use below as non-auth user
-# api_key = "sk-xxx"
-
+api_key = "sk-xxxxx"
 requests_headers = {}
 requests_payload = {
     "model": "mixtral-8x7b",
